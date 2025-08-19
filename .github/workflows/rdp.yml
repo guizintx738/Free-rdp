@@ -16,14 +16,5 @@ jobs:
       - name: Configurar Ngrok
         run: .\ngrok_temp\ngrok.exe authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
 
-      - name: Abrir túnel RDP
-        run: Start-Process .\ngrok_temp\ngrok.exe "tcp 3389"
-
-      - name: Mostrar credenciais
-        run: |
-          echo "==========================="
-          echo "RDP ativado!"
-          echo "Host/Porta: veja o link tcp:// no log acima"
-          echo "Usuário: runneradmin"
-          echo "Senha: runneradmin"
-          echo "==========================="
+      - name: Abrir túnel RDP e mostrar link
+        run: .\ngrok_temp\ngrok.exe tcp 3389 --log stdout
